@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="images/fav.png">  
+    <title>Delhi Airport PRM Module</title>
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">    
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/sticky-footer-navbar.css" rel="stylesheet">
+    <link href="https://code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css" rel="stylesheet" />
+
+    <script src="js/jquery-3.6.0.js"></script>
+    <script src="js/jquery-1.12.3.min.js"></script>
+    <script src="js/jquery-ui.js"></script>
+    <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+    <header>
+      <!-- Fixed navbar -->
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top">
+            <a class="navbar-brand" href="#"><img src="images/dial.png" alt="" width="200" max-height="70"></a>
+        </nav>
+    </header>
+<!-- Begin page content -->
+<main role="main" class="container">
+  <div class="row">
+      <div class="col-md-6 offset-md-3">      
+          <h3 class="mt-2">Hi! How we can help?</h3>
+      </div>
+      <div class="col-md-6 offset-md-3">      
+          <input type="text" class="form-control" id="search" placeholder="Search for Airlines.."
+          title="Type in a name">
+      </div>  
+      <div class="col-md-6 offset-md-3 py-2" id='dial'>
+          <div class="card" id="card">
+            <img src="images/gmr.png" class="card-img-top" alt="..." id="logo">
+            <div class="card-body">
+                <h5 class="card-title">Helpline Number</h5>
+                <p class="card-text" id="helpline"><a href="tel:01161239707">01161239707</a></p>
+            </div>
+        </div>   
+    </div>
+    <div class="col-md-6 offset-md-3 py-2" id="newdial">
+    </div>    
+</div>
+</main>
+<footer class="footer navbar-dark text-center">
+    <div class="container">
+        <span class="text-muted">
+            <small class="text-white copyright">&copy; 2021, Design and Developed by <a href="https://waisl.in" target="_blank">WAISL</a></samll>
+        </span>
+    </div>
+</footer>
+<script src="js/popper.min.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+
+<script>
+    $("#newdial").hide();
+    $(function () {
+        $("#search").autocomplete({
+            source: //"autocomplete.php",
+            [
+            {
+                id: "Delhi Airport PRM",
+                value: "Delhi Airport PRM",
+                label: "Delhi Airport PRM",
+                code: "CP",
+                helpline: "01161239707",
+                img: "images/dial.png"
+            },
+            {
+                id: "Spicejet",
+                value: "Spicejet",
+                label: "Spicejet",
+                code: "Sj",
+                helpline: "01161239059",
+                img: "images/SJ.png"
+            },
+            {
+                id: "Air Asia",
+                value: "Air Asia",
+                label: "Air Asia",
+                code: "AS",
+                helpline: "0116129280",
+                img: "images/I5.png"
+            },
+            {
+                id: "Vistara",
+                value: "Vistara",
+                label: "Vistara",
+                code: "VS",
+                helpline: " 01161231166",
+                img: "images/UK.png"
+            },
+            {
+                id: "WheelChair Service",
+                value: "WheelChair Service",
+                label: "WheelChair Service",
+                code: "BA",
+                helpline: "01161239069",
+                img: "images/wheelchair.png"
+            },            
+            {
+                id: "Air India",
+                value: "Air India",
+                label: "Air India",
+                code: "AI",
+                helpline: "01161231097",
+                img: "images/AI.png"
+            },
+            {
+                id: "Indigo",
+                value: "Indigo",
+                label: "Indigo",
+                code: "6E",
+                helpline: "01161234502",
+                img: "images/6E.png"
+            }
+            ],
+            minLength: 1,
+            select: function (event, ui) {
+
+                var url = ui.item.id;
+                if(url != '') {
+                    $("#dial").hide();
+                    $("#newdial").show();
+                    $("#newdial").html('<div class="card" id="card"><img src="'+ ui.item.img +'" class="card-img-top" alt="..." id="logo"><div class="card-body"><h5 class="card-title">Helpline Number</h5><p class="card-text" id="helpline"><a href="tel:'+ ui.item.helpline +'">'+ ui.item.helpline +'</a></p></div></div>');
+                }
+
+            },
+            html: true,
+            open: function (event, ui) {
+            $(".ui-autocomplete").css("z-index", 1000);
+
+        }
+    })
+        .autocomplete("instance")._renderItem = function (ul, item) {
+            return $("<li><div><img src='" + item.img + "'><span>" + item.value + "</span></div></li>").appendTo(ul);
+        };
+
+    });
+</script>
+    </body>
+</html>
